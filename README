@@ -1,0 +1,10 @@
+passdb
+======
+
+Password database module for Drupal. Securely store your passwords.
+
+Requirements
+------------
+
+* GPG command line
+* Writable directory (defaults to $DOCROOT/sites/default/files)
