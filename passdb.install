@@ -1,0 +1,61 @@
+<?php
+
+function passdb_schema() {
+    $schema['passdb_accounts'] = array(
+        'description' =>  'Accounts',
+        'fields' => array(
+            'account_id' => array(
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'create_timestamp' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'update_timestamp' => array(
+                'type' => 'int',
+                'not null' => TRUE
+            ),
+            'username' => array(
+                'type' => 'varchar',
+                'length' => 500,
+            ),
+            'password' => array(
+                'type' => 'varchar',
+                'length' => 500,
+            ),
+            'description' => array(
+                'type' => 'varchar',
+                'length' => 500,
+            )
+        ),
+        'primary key' => array('account_id'),
+    );
+
+    $schema['passdb_account_notes'] = array(
+        'description' => 'Account Notes',
+        'fields' => array(
+            'note_id' => array(
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+            'account_id' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'timestamp' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'note_data' => array(
+                'type' => 'varchar',
+                'length' => 500,
+            ),
+        ),
+        'primary key' => array('note_id'),
+    );
+}

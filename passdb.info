@@ -1,0 +1,7 @@
+name = PassDB
+description = Securely store and manage usernames and passwords for your accounts
+package = 0xfeedface
+core = 7.x
+files[] = passdb.module
+files[] = passdb.install
+files[] = admin.inc

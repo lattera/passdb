@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * Implements hook_permission()
+ */
+function passdb_permission() {
+    $perms = array(
+        'regenerate gpg key' => array(
+            'title' => t('Regenerate GPG key'),
+        ),
+        'administer passdb' => array(
+            'title' => t('Administer PassDB'),
+        ),
+        'access passdb' => array(
+            'title' => t('Access PassDB accounts'),
+        ),
+    );
+
+    return $perms;
+}
+
+function passdb_menu() {
+    /* Admin settings */
+    $items['admin/config/passdb'] = array(
+        'title' => 'PassDB Settings',
+        'description' => 'PassDB Settings',
+        'page callback' => 'system_admin_menu_block_page',
+        'position' => 'right',
+        'weight' => -5,
+        'file' => 'system.admin.inc',
+        'file path' => drupal_get_path('module', 'system'),
+        'access callback' => 'user_access',
+        'access arguments' => array('administer passdb'),
+    );
+
+    $items['admin/config/passdb/settings'] = array(
+        'title' => 'PassDB Main Settings',
+        'description' => 'PassDB Main Settings',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('passdb_admin_settings'),
+        'type' => MENU_NORMAL_ITEM,
+        'file' => 'admin.inc',
+        'access callback' => 'user_access',
+        'access arguments' => array('administer passdb'),
+    );
+
+    $items['passdb/list'] = array(
+        'title' => 'Password List',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('passdb_list'),
+        'file' => 'passdb_list.inc',
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => 'passdb_user_access',
+        'access arguments' => array('access passdb'),
+    );
+
+    return $items;
+}
+
+function passdb_user_access($access) {
+    switch ($access) {
+        case 'access passdb':
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
