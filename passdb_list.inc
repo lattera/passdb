@@ -20,7 +20,7 @@ function show_list($accounts, &$form, &$form_state) {
 
     foreach ($accounts as $account) {
         $rows[] = array(
-            $account->site,
+            l(t($account->site), 'passdb/account/' . $account->account_id),
             $account->username,
             $account->create_timestamp,
             $account->update_timestamp

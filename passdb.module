@@ -45,10 +45,20 @@ function passdb_menu() {
     );
 
     $items['passdb/list'] = array(
-        'title' => 'Password List',
+        'title' => 'Account List',
         'page callback' => 'drupal_get_form',
         'page arguments' => array('passdb_list'),
         'file' => 'passdb_list.inc',
+        'type' => MENU_NORMAL_ITEM,
+        'access callback' => 'passdb_user_access',
+        'access arguments' => array('access passdb'),
+    );
+
+    $items['passdb/account/%'] = array(
+        'title' => 'Configure Account',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('passdb_config_account', 2),
+        'file' => 'passdb_config_account.inc',
         'type' => MENU_NORMAL_ITEM,
         'access callback' => 'passdb_user_access',
         'access arguments' => array('access passdb'),
