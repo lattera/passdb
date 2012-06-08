@@ -20,6 +20,10 @@ function passdb_schema() {
                 'type' => 'int',
                 'not null' => TRUE
             ),
+            'site' => array(
+                'type' => 'varchar',
+                'length' => 500,
+            ),
             'username' => array(
                 'type' => 'varchar',
                 'length' => 500,
@@ -58,4 +62,6 @@ function passdb_schema() {
         ),
         'primary key' => array('note_id'),
     );
+
+    return $schema;
 }
